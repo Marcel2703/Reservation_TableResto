@@ -1,0 +1,66 @@
+page-login-count-employee-resto {
+
+
+    .scroll-content,
+    .fixed-content {       
+         overflow: hidden;
+        
+    }
+    .top-page {
+        padding-top: 35%;
+        height: 50%;
+        h2 {
+             img {
+                  max-width: 25% !important;
+                  background: #fff;
+                  ;
+                  padding: 5px;
+                  border-radius: 6px;
+             }
+        }
+   }
+
+   .forgotPassword{
+    color: #ffc409;
+    text-decoration: none;
+    font-size: 13px;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+}
+
+ .inputText:hover{
+    box-shadow: none;
+}
+ .inputText::placeholder{
+    color:#dddde9;
+    /*font-style: italic;*/
+}
+.inputSubmit{
+    width: 100%;
+    border-radius: 10px;
+    margin: 25px 0;
+    background: #f6c646;
+    font-size: 20px;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+}
+
+.inputSubmit[disabled]{
+    opacity: 1;
+}
+.inputSubmit:focus,
+.inputBack .inputSubmit:hover{
+    box-shadow: 1px 1px 4px #fff, -1px -1px 4px #fff;
+}
+
+.inputBack{
+    width: 100%;
+    border-radius: 5px;
+    font-size: 20px;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+}
+.inputText.error{
+    border:3px solid #f16262 !important;
+}
+}

@@ -1,0 +1,146 @@
+<ion-header class="welcome-header">
+    <div class="content">
+      <div class="title">Ajout-employee</div>
+      <div class="subtitle">Formulaires d'ajout pour un employée</div>
+    </div>
+</ion-header>
+<ion-content padding>
+      <ion-slides #innerSlider class="content-slider">
+        <ion-slide class="swiper-no-swiping">
+          <ion-card> 
+            <ion-card-title>
+                Info personelles
+            </ion-card-title>                               
+            <ion-card-content class="activeTab === 0">              
+                   <form [formGroup]="slideOneForm">
+                               <div class="profile-image-wrapper" (click)="changePicture()">
+                                 <div class="profile-image-placeholder">                                   
+                                   <ion-icon name="add"></ion-icon>
+                                   <div class="chosenPicture">
+                                     choisir image
+                                   </div>
+                                 </div>
+                               </div>
+                               <ion-item>
+                                   <ion-label floating>Nom</ion-label>
+                                   <ion-input formControlName="lastname" type="text" [(ngModel)]="employee.lastname"  [ngClass]="{'error': !slideOneForm.get('lastname').valid && showErrors}"></ion-input>
+                               </ion-item>
+                               <div class="payment-desc" *ngIf="slideOneForm.get('lastname').hasError('pattern') && showErrors[0]">
+                                <span><p>Le nom que vous avez entré </p><p>invalide,</p> <p>Le nom ne peut pas contenir </p>que des chaines de caractéres</span>
+                              </div>
+                              <div class="payment-desc" *ngIf="slideOneForm.get('lastname').hasError('required') && showErrors[0]">
+                                <span>Veuillez entrer un nom</span>
+                              </div>
+                              <div class="payment-desc" *ngIf="hasError('lastname') && slideOneForm.get('lastname').pristine">
+                                <span>{{getError('lastname')}}</span>
+                              </div>
+                        
+                               <ion-item>
+                                   <ion-label floating>Prénom</ion-label>
+                                   <ion-input formControlName="firstname" type="text" [(ngModel)]="employee.firstname"  [ngClass]="{'error': !slideOneForm.get('firstname').valid && showErrors}"></ion-input>
+                               </ion-item>
+                               <div class="payment-desc" *ngIf="slideOneForm.get('firstname').hasError('pattern') && showErrors[0]">
+                                <span><p>Le prénom que vous avez entré </p><p>invalide,</p> <p>Le prenom ne peut pas contenir </p>que des chaines de caractéres</span>
+                              </div>
+                              <div class="payment-desc" *ngIf="slideOneForm.get('firstname').hasError('required') && showErrors[0]">
+                                <span>Veuillez entrer un prénom</span>
+                              </div>
+                              <div class="payment-desc" *ngIf="hasError('firstname') && slideOneForm.get('firstname').pristine">
+                                <span>{{getError('firstname')}}</span>
+                              </div>
+
+                               <ion-item>
+                                   <ion-label floating>Profile rôle</ion-label>
+                                   <ion-select formControlName="profileId"  [(ngModel)]="employee.profileId"  [ngClass]="{'error': !slideOneForm.get('profileId').valid && showErrors}">
+                                       <ion-option *ngFor="let type of profiles" [value]="type.id" checked="true">{{type.profileRole}}</ion-option>
+                                   </ion-select>                                  
+                               </ion-item>
+                               <div class="payment-desc" *ngIf="slideOneForm.get('profileId').hasError('required') && showErrors[0]">
+                                <span>Veuillez sélectionner le corps métier de l'employé</span>
+                              </div>             
+                           </form>                                
+           </ion-card-content>                    
+           </ion-card>                 
+           <button ion-button icon-right outline color="light" (click)="slideNext()">Continuer <ion-icon name="arrow-forward"></ion-icon></button> 
+        </ion-slide>
+        <ion-slide class="swiper-no-swiping">
+          <ion-card>
+            <ion-card-title>
+                Finalisation du compte
+            </ion-card-title>
+            <ion-card-content class="activeTab === 1">             
+                    <form [formGroup]="slideTwoForm">
+                        <ion-item>
+                            <ion-label floating>Adresse</ion-label>
+                            <ion-input formControlName="adress" type="text" [(ngModel)]="employee.adress"  [ngClass]="{'error': !slideTwoForm.get('adress').valid && showErrors}"></ion-input>
+                        </ion-item>
+                        <div class="payment-desc" *ngIf="slideTwoForm.get('adress').hasError('required') && showErrors[1]">
+                            <span>Veuillez sélectionner l'adresse' de l'employé</span>
+                          </div>
+                        <ion-item>
+                            <ion-label floating>Mobile</ion-label>
+                            <ion-input formControlName="phoneNumber" [(ngModel)]="employee.phoneNumber"  [ngClass]="{'error': !slideTwoForm.get('phoneNumber').valid && showErrors}"></ion-input>
+                        </ion-item>
+                        <div class="payment-desc" *ngIf="slideTwoForm.get('phoneNumber').hasError('pattern') && showErrors[1]">
+                            <span>Le mobile que vous avez entré est invalide</span>
+                          </div>
+                          <div class="payment-desc" *ngIf="slideTwoForm.get('phoneNumber').hasError('required') && showErrors[1]">
+                            <span>Veuillez entrer un numero télephone</span>
+                          </div>
+                          <div class="payment-desc" *ngIf="hasError('phoneNumber') && slideTwoForm.get('phoneNumber').pristine">
+                            <span>{{getError('phoneNumber')}}</span>
+                          </div>
+
+                       <ion-item>
+                         <ion-label floating>Email</ion-label>
+                         <ion-input type="email" formControlName="email" [(ngModel)]="employee.email"  [ngClass]="{'error': !slideTwoForm.get('email').valid && showErrors}"></ion-input>
+                       </ion-item>
+                       <div class="payment-desc" *ngIf="slideTwoForm.get('email').hasError('pattern') && showErrors[1]">
+                        <span>L'email que vous avez entré est invalide</span>
+                      </div>
+                      <div class="payment-desc" *ngIf="slideTwoForm.get('email').hasError('required') && showErrors[1]">
+                        <span>Veuillez entrer un email</span>
+                      </div>
+                      <div class="payment-desc" *ngIf="hasError('email') && form1.get('email').pristine">
+                        <span>{{getError('email')}}</span>
+                      </div>
+                       
+                       <ion-item>
+                         <ion-label floating>Mot de passe</ion-label>
+                         <ion-input type="password" formControlName="password" [(ngModel)]="employee.password"  [ngClass]="{'error': !slideTwoForm.get('password').valid && showErrors}"></ion-input>
+                       </ion-item>
+                       <div class="payment-desc" *ngIf="slideTwoForm.get('password').hasError('pattern') && showErrors[1]">
+                        <span><p>Le mot de passe que vous avez</p>  entré est invalide</span>
+                      </div>
+                      <div class="payment-desc" *ngIf="slideTwoForm.get('password').hasError('required') && showErrors[1]">
+                        <span>Veuillez entrer un mot de passe</span>
+                      </div>
+                      <div class="payment-desc" *ngIf="hasError('password') && slideTwoForm.get('password').pristine">
+                        <span>{{getError('password')}}</span>
+                      </div>
+
+                       <ion-item>
+                         <ion-label floating>Confirmer mot de pase</ion-label>
+                         <ion-input type="password" formControlName="confirmPassword"  [ngClass]="{'error': !slideTwoForm.get('confirmPassword').valid && showErrors}"></ion-input>
+                       </ion-item>
+                       <div class="payment-desc" *ngIf="slideTwoForm.get('confirmPassword').hasError('pattern') && showErrors[1]">
+                        <span><p>Mot de passe et confirmation mot de passe</p> non identiques</span>
+                      </div>
+                      <div class="payment-desc" *ngIf="slideTwoForm.get('confirmPassword').hasError('required') && showErrors[1]">
+                        <span><p>Veuillez comfirmer</p>  votre mot de passe</span>
+                      </div>
+                       
+                    </form>                                                         
+            </ion-card-content>
+          </ion-card>  
+          <button ion-button type="submit" class="btn btn-warning mdm-radius inputSubmit" (click)="save()" >ENREGISTRER</button>             
+            <button ion-button clear (click)="slidePrevious()" color="light" class="goback-button"><ion-icon name="arrow-back"></ion-icon>Retourner</button>
+
+        </ion-slide>
+      </ion-slides>
+</ion-content>
+<ion-footer>
+    <div class="container">
+    <p>Copyright ASTEK 2019  -  <a href="">Mentions Légales</a>  -  <a href="">CGV</a></p>
+    </div>
+    </ion-footer>

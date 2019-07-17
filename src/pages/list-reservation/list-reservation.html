@@ -1,0 +1,84 @@
+<ion-header class="welcome-header"> 
+    <div class="menu">
+        <button ion-button menuToggle color="light">
+            <ion-icon name="menu"></ion-icon>
+          </button>  
+    </div>   
+    <div class="content">
+        <div class="title">listes réservations</div>
+        <div class="subtitle">Listes de toutes les réservations</div>
+      </div>
+      <button ion-fab color="dark" class="refresh" ><ion-icon name="refresh"></ion-icon></button>
+    </ion-header>
+    
+    
+    <ion-content>
+      <ion-card *ngFor="let prof of reservations; let i=index;">
+        <ion-card-content>
+          <h2 class="card-title">
+            Code de reservation => {{prof.reservationCode}}
+          </h2>
+          <p>
+            Motif : {{prof.motifDescription}}
+          </p>
+          <p>
+            DATE : {{prof.dateReservation}}<label>
+                <ion-icon slot="icon-only" name="clock">
+                </ion-icon>
+              </label>
+          </p>
+        </ion-card-content>
+        <ion-item>
+          <div item-start class="albums-icon">Statut</div>
+          
+          <p item-end>
+            <ng-container [ngSwitch] = "prof.status">
+               <p *ngSwitchCase="'0'"><ion-badge>
+                  En Attente
+                 <ion-icon slot="icon-only" name="hand">
+                 </ion-icon>
+               </ion-badge>
+               </p> 
+               <p *ngSwitchCase="'1'">Encours</p> 
+               <p *ngSwitchCase="'2'"><ion-badge>
+                  Acceptée
+                 <ion-icon slot="icon-only" name="checkmark-circle">
+                 </ion-icon>
+               </ion-badge></p> 
+            </ng-container>
+          </p>
+        </ion-item>
+        <ion-item >
+    
+                  <div item-start class="twitter-icon">
+                      <button ion-button  fill="clear" color="light">
+                          VOIR DETAILS
+                      </button> 
+                  </div>
+                  <div item-end>
+                      <ng-container [ngSwitch] = "prof.status">
+                          <div *ngSwitchCase="'2'">
+                              <a>
+                                  OK
+                              </a>
+                          </div>
+                          <div *ngSwitchCase="'0'">
+                              <a>
+                                  <button ion-button slot="end" fill="clear" color="danger" (click)="CancelReservation(prof)">
+                                      Refuser
+                                  </button> 
+                                </a>
+                                <a>
+                                <button ion-button slot="end" fill="clear" color="secondary" (click)="ValidReservation(prof)">
+                                  <ion-icon slot="icon-only" name="checkmark-circle">                        
+                                  </ion-icon>
+                                  Valider
+                                </button> 
+                              </a>
+                          </div>
+                        </ng-container>
+                </div>
+          
+        </ion-item>
+      </ion-card>
+    </ion-content>

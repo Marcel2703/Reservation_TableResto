@@ -1,0 +1,68 @@
+page-list-table {
+    /* You can add global styles to this file, and also import other style files */
+@import '../assets/css/bootstrap.min.css';
+@import '../assets/css/icons.css';
+@import '../assets/css/fonts.css';
+@import '../assets/css/main.css';
+
+    
+    a {
+        cursor: pointer;
+    }
+    .page-background{
+        background-color: rgb(89, 138, 223);
+      }
+    
+      p{
+        margin:0;
+      }
+    
+      .welcome-header{
+        position: relative;
+        background: linear-gradient(135deg, #8B7FE0, #F75F9D);
+        width:100%;
+        padding: 30px 0;
+        margin-bottom: 20px;
+    
+        .refresh {
+          position: absolute;
+          left: 10px;
+          background-color: #4c5b79;
+          box-shadow: 0px 0px 5px #5b6a89;
+        }
+
+        .menu {
+          position: absolute;
+          right: 10px;
+        }
+
+        .menu {
+          position: absolute;
+          right: 10px;
+        }
+    
+        .content {
+          text-align: center;
+          padding: 20px;
+          color:white;
+    
+          img {
+            width: 100px;
+            margin-bottom: 10px;
+          }
+    
+          .title {
+            font-size:20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+          }
+    
+          .subtitle {
+            font-size: 15px;
+            font-weight: 400;
+            text-align: center;
+          }
+        }
+      }
+}

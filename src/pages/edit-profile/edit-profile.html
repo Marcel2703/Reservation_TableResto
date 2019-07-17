@@ -1,0 +1,41 @@
+<ion-header class="welcome-header">
+  <div class="content">
+    <div class="title">modification-profile</div>
+    <div class="subtitle">Formulaire de modification de
+        profile rôle employée</div>
+  </div>
+</ion-header>
+
+<ion-content padding>      
+    <ion-card *ngIf="profile">                           
+        <ion-card-content>              
+            <form [formGroup]="form">
+                   <ion-item>
+                      <ion-label floating>Profile rôle</ion-label>
+                        <ion-input type="text" [(ngModel)]="profile.profileRole" formControlName="profileRole" [ngClass]="{'error': !form.get('profileRole').valid && showErrors}">
+                        </ion-input>                                                  
+                      </ion-item> 
+                      <p></p> 
+                    <div class="payment-desc" *ngIf="!form.get('profileRole').valid && showErrors">
+                      <span>Veuillez renseigner le profile rôle</span>
+                    </div>
+                    <ion-item>
+                     <ion-label floating>Niveau d'accès</ion-label>
+                     <ion-select class="form-control" formControlName="niveauAccess" id="niveauAccess" [(ngModel)]="profile.niveauAccess">
+                          <ion-option *ngFor="let type of typesNiveauAcces" [value]="type.value" checked="true">{{type.display}}</ion-option>
+                     </ion-select>
+                     </ion-item>
+                     <p></p>                                                    
+                    <div class="payment-desc" *ngIf="!form.get('niveauAccess').valid && showErrors">
+                      <span>Veuillez renseigner le niveau d'accès de profile rôle</span>
+                    </div>                                    
+              </form>                             
+       </ion-card-content>                    
+       </ion-card>                 
+       <button ion-button type="submit" class="btn btn-warning mdm-radius inputSubmit" (click)="addProfile()" >ENREGISTRER</button>    
+</ion-content>
+<ion-footer>
+  <div class="container">
+  <p>Copyright ASTEK 2019  -  <a href="">Mentions Légales</a>  -  <a href="">CGV</a></p>
+  </div>
+ </ion-footer>

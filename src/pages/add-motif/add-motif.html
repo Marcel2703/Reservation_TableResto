@@ -1,0 +1,31 @@
+<ion-header class="welcome-header">
+    <div class="content">
+      <div class="title">Ajout-motif</div>
+      <div class="subtitle">Formulaire d'ajout 
+          type de motif de reservation employée</div>
+    </div>
+</ion-header> 
+  <ion-content padding>    
+      <ion-card>                           
+          <ion-card-content>              
+              <form [formGroup]="form">
+                     <ion-item>
+                        <ion-label floating>Déscription de type motif</ion-label>
+                          <ion-input type="text" [(ngModel)]="motif.motifDescription" formControlName="motifDescription" [ngClass]="{'error': !form.get('motifDescription').valid && showErrors}">
+                          </ion-input>                         
+                      </ion-item>                
+                   <ion-item>
+                    <div class="payment-desc" *ngIf="!form.get('motifDescription').valid && showErrors">
+                      <span><p>Veuillez renseigner le description </p> <p> motif</p></span>
+                    </div>
+                  </ion-item>                                                                             
+                </form>                             
+         </ion-card-content>                    
+         </ion-card>                 
+         <button ion-button type="submit" class="btn btn-warning mdm-radius inputSubmit" (click)="addMotif()" >ENREGISTRER</button>    
+  </ion-content>
+  <ion-footer>
+    <div class="container">
+    <p>Copyright ASTEK 2019  -  <a href="">Mentions Légales</a>  -  <a href="">CGV</a></p>
+    </div>
+   </ion-footer>

@@ -1,0 +1,10 @@
+<!--
+  Generated template for the TabsClientPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<super-tabs tabsPlacement="bottom" toolbarBackground="light" toolbarColor="dark" indicatorColor="dark"
+(tabSelect)="onTabSelect($event)">
+<super-tab *ngFor="let page of pages" [root]="page.pageName" [title]="page.title" [icon]="page.icon" [id]="page.id"></super-tab>
+</super-tabs>

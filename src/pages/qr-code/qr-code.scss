@@ -1,0 +1,20 @@
+page-qr-code {
+    .scroll-content,
+    .fixed-content {       
+         overflow: hidden;
+        
+    }
+    .top-page {
+        padding-top: 35%;
+        height: 50%;
+        h2 {
+             img {
+                  max-width: 25% !important;
+                  background: #fff;
+                  ;
+                  padding: 5px;
+                  border-radius: 6px;
+             }
+        }
+   }
+}

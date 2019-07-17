@@ -1,0 +1,41 @@
+<ion-header class="welcome-header">
+  <div class="content">
+    <div class="title">add-langage</div>
+    <div class="subtitle">Formulaires de modification de langage</div>
+  </div>
+</ion-header>
+
+<ion-content padding>    
+    <ion-card>                           
+        <ion-card-content *ngIf="language">              
+            <form [formGroup]="form">
+                 <div>
+                  <ion-label floating>Code langage</ion-label>
+                  <ion-input type="text" [(ngModel)]="language.languageCode" formControlName="languageCode" [ngClass]="{'error': !form.get('languageCode').valid && showErrors}">
+                  </ion-input>                                      
+           
+                 </div>
+                     <p></p> 
+                  <div class="payment-desc" *ngIf="!form.get('languageCode').valid && showErrors">
+                    <span>Veuillez renseigner le code langage</span>
+                  </div>
+                
+                  <div>
+                      <ion-label floating>Nom langage</ion-label>
+                      <ion-input type="text" [(ngModel)]="language.languageName" formControlName="languageName" [ngClass]="{'error': !form.get('languageName').valid && showErrors}">
+                      </ion-input>   
+                  </div>                                                
+                  <p></p> 
+                      <div class="payment-desc" *ngIf="!form.get('languageName').valid && showErrors">
+                        <span>Veuillez renseigner le nom langage</span>
+                      </div>                                                                                       
+              </form>                             
+       </ion-card-content>                    
+       </ion-card>                 
+       <button ion-button type="submit" class="btn btn-warning mdm-radius inputSubmit" (click)="addLanguage()" >ENREGISTRER</button>    
+</ion-content>
+<ion-footer>
+  <div class="container">
+  <p>Copyright ASTEK 2019  -  <a href="">Mentions Légales</a>  -  <a href="">CGV</a></p>
+  </div>
+ </ion-footer>

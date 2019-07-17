@@ -1,0 +1,37 @@
+<ion-header class="welcome-header">
+    <div class="content">
+      <div class="title">Ajout-table</div>
+      <div class="subtitle">Formulaires d'ajout pour un table</div>
+    </div>
+</ion-header>
+  
+  <ion-content padding>      
+      <ion-card>                           
+          <ion-card-content>              
+              <form [formGroup]="form">
+                     <ion-item>
+                        <ion-label floating>Code table</ion-label>
+                          <ion-input type="text" [(ngModel)]="table.tableCode" formControlName="tableCode" [ngClass]="{'error': !form.get('tableCode').valid && showErrors}">
+                          </ion-input>                         
+                      </ion-item>                
+                    <div class="payment-desc" *ngIf="!form.get('tableCode').valid && showErrors">
+                        <span>Veuillez renseigner le code table</span>
+                   </div> 
+                   <ion-item>
+                      <ion-label floating>Nombres de place</ion-label>
+                        <ion-input type="number" [(ngModel)]="table.placeNumber" formControlName="placeNumber" [ngClass]="{'error': !form.get('placeNumber').valid && showErrors}">
+                        </ion-input>                         
+                    </ion-item>                
+                  <div class="payment-desc" *ngIf="!form.get('placeNumber').valid && showErrors">
+                      <span><p>Veuillez entrer de nombre entier </p> <p>et inferieur à 14</p> </span>
+                 </div>                                                                           
+                </form>                             
+         </ion-card-content>                    
+         </ion-card>                 
+         <button ion-button type="submit" class="btn btn-warning mdm-radius inputSubmit" (click)="addTable()" >ENREGISTRER</button>    
+  </ion-content>
+  <ion-footer>
+    <div class="container">
+    <p>Copyright ASTEK 2019  -  <a href="">Mentions Légales</a>  -  <a href="">CGV</a></p>
+    </div>
+   </ion-footer>

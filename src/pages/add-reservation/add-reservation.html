@@ -1,0 +1,91 @@
+<ion-header class="welcome-header">
+  <div class="content">
+    <div class="title">Ajout-reservation</div>
+    <div class="subtitle">Formulaires réservation</div>
+  </div>
+</ion-header>
+<ion-content padding>
+    <ion-slides #innerSlider class="content-slider">
+      <ion-slide class="swiper-no-swiping">
+        <ion-card> 
+          <ion-card-title>
+              Info reservation
+          </ion-card-title>                               
+          <ion-card-content class="activeTab === 0">              
+                 <form [formGroup]="slideOneForm">
+                  <ion-item>
+                    <ion-label floating>Code de reservation</ion-label>
+                    <ion-input formControlName="reservationCode" type="text" [(ngModel)]="reservation.reservationCode"  [ngClass]="{'error': !slideOneForm.get('reservationCode').valid && showErrors}"></ion-input>
+                </ion-item>
+                <div class="payment-desc" *ngIf="slideOneForm.get('reservationCode').hasError('required') && showErrors[0]">
+                    <span>Veuillez sélectionner l'adresse' de l'employé</span>
+                  </div>
+                <ion-item>
+                    <ion-label floating>Motif de reservation</ion-label>
+                    <ion-select formControlName="motifId"  [(ngModel)]="reservation.motifId"  [ngClass]="{'error': !slideOneForm.get('motifId').valid && showErrors}">
+                      <ion-option *ngFor="let type of motifs" [value]="type.id" sle>{{type.motifDescription}}</ion-option>
+                  </ion-select> 
+                </ion-item>
+                  <div class="payment-desc" *ngIf="slideOneForm.get('motifId').hasError('required') && showErrors[0]">
+                    <span>Veuillez entrer un numero télephone</span>
+                  </div>
+
+               <ion-item>
+                 <ion-label floating>Nb de convives</ion-label>
+                 <ion-input type="number" formControlName="guestNumber" [(ngModel)]="reservation.guestNumber"  [ngClass]="{'error': !slideOneForm.get('guestNumber').valid && showErrors}"></ion-input>
+               </ion-item>
+               <div class="payment-desc" *ngIf="slideOneForm.get('guestNumber').hasError('pattern') && showErrors[0]">
+                <span>L'email que vous avez entré est invalide</span>
+              </div>
+              <div class="payment-desc" *ngIf="hasError('guestNumber') && slideOneForm.get('guestNumber').pristine">
+                <span>{{getError('guestNumber')}}</span>
+              </div>
+              
+              <ion-item>
+                <ion-label floating>Date de reservation</ion-label>
+                <ion-datetime display-format="YYYY-MM-DDTHH:mm" formControlName="dateReservation"  [(ngModel)]="reservation.dateReservation"  [ngClass]="{'error': !slideOneForm.get('dateReservation').valid && showErrors}"></ion-datetime>
+            </ion-item>
+            <div class="payment-desc" *ngIf="slideOneForm.get('dateReservation').hasError('required') && showErrors[0]">
+                <span>Veuillez sélectionner l'adresse' de l'employé</span>
+              </div>           
+              </form>                                
+         </ion-card-content>                    
+         </ion-card>                 
+         <button ion-button icon-right outline color="light" (click)="slideNext()">Continuer <ion-icon name="arrow-forward"></ion-icon></button> 
+      </ion-slide>
+      <ion-slide class="swiper-no-swiping">
+        <ion-card>
+          <ion-card-title>
+              Finalisation du reservation
+          </ion-card-title>
+          <ion-card-content class="activeTab === 1">             
+                  <form [formGroup]="slideTwoForm">
+                      <ion-item>
+                        <ion-label floating>Table reservée</ion-label>
+                        <ion-select multiple="true" cancelText="Annuler" okText="Ok" formControlName="listeTable"  [(ngModel)]="reservation.listeTable"  [ngClass]="{'error': !slideTwoForm.get('listeTable').valid && showErrors}">
+                         <ion-option *ngFor="let type of tables" [value]="type">{{type.tableCode}}=>{{type.placeNumber}}</ion-option>
+                        </ion-select> 
+                      </ion-item>
+                     <ion-item>
+                       <ion-label floating>Partagé resrvation</ion-label>
+                       <ion-input  formControlName="listePartageClient" [(ngModel)]="reservation.listePartageClient"  [ngClass]="{'error': !slideTwoForm.get('listePartageClient').valid && showErrors}"></ion-input>
+                     </ion-item>                     
+                     <ion-item>
+                      <ion-label floating>Commentaires</ion-label>
+                      <ion-textarea type="text" formControlName="commentary" [(ngModel)]="reservation.commentary"  [ngClass]="{'error': !slideTwoForm.get('commentary').valid && showErrors}"></ion-textarea>
+                    </ion-item>
+                   <div class="payment-desc" *ngIf="slideTwoForm.get('commentary').hasError('required') && showErrors[1]">
+                     <span>Veuillez entrer un mot de passe</span>
+                   </div>
+                   <div class="payment-desc" *ngIf="hasError('commentary') && slideTwoForm.get('commentary').pristine">
+                     <span>{{getError('commentary')}}</span>
+                   </div> 
+                  </form>                                                         
+          </ion-card-content>
+        </ion-card>               
+              <button ion-button full color="primary" (click)="addReservation()">Enregistrer</button>  
+          <button ion-button clear (click)="slidePrevious()" color="light" class="goback-button"><ion-icon name="arrow-back"></ion-icon>Retourner</button>
+
+      </ion-slide>
+    </ion-slides>
+</ion-content>

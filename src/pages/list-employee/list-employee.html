@@ -1,0 +1,40 @@
+<!--
+  Generated template for the ListEmployeePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="welcome-header">
+  <div class="content">
+    <div class="title">list-employee</div>
+    <div class="subtitle">Listes employées du réstaurant</div>
+  </div>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+      <ion-item-sliding *ngFor="let item of employees; let i=index;">
+        <ion-item>
+          <ion-thumbnail item-start>
+            <img [src]="item.photoPath || placeholder" onerror="this.src='../assets/img/avatar/girl-avatar.png'">
+          </ion-thumbnail>
+          <h2>{{item.profileRole}}</h2>
+          <p>{{item.lastname}} • {{item.firstname}}</p>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="secondary" (click)="showEmployeeDetails(item)">
+          <ion-icon name="eye"></ion-icon>
+          Voir
+        </button>
+          <button ion-button color="primary" (click)="viewPlayers(item)">
+          <ion-icon name="checkmark-circle"></ion-icon>
+          Valider inscription
+        </button>
+          <button ion-button color="danger" (click)="delete(item)">
+          <ion-icon name="trash"></ion-icon>
+          Supprimer
+        </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-content>
